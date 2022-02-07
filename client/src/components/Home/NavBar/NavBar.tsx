@@ -6,7 +6,7 @@ import './NavBar.scss';
 const NavBar = () => {
   return <nav className="nav-bar">
       <h1 className="nav-bar-title">My Movie Collection</h1>
-      <SearchBar />
+      <SearchBar shouldNavigate={true} />
   </nav>
 };
 
