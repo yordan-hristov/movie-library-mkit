@@ -1,10 +1,15 @@
 import React, { FormEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 import userService from '../../services/userService';
+import { setUser } from '../../store/user/userSlice';
 
 import './SignIn.scss';
 
 const SignIn = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -21,7 +26,8 @@ const SignIn = () => {
 
         if (data.message) return setErrorMessage(data.message);
 
-        console.log(data);
+        dispatch(setUser(data));
+        navigate('/home');
     };
 
     return (
@@ -37,7 +43,7 @@ const SignIn = () => {
 
                     <input type="submit" value="SIGN IN" className="submit"/>
                 </form>
-                <p className="sign-in-text">Don't have an account?</p>
+                <p className="sign-in-text">Don't have an account?<Link to={"/sign-up"}><span className="register-link">Sign up</span></Link></p>
             </div>
         </div>
     );
