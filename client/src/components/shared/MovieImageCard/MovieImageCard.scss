@@ -1,0 +1,14 @@
+.movie-image-card {
+    cursor: pointer;
+
+    img {
+        width: 15vw;
+        height: 40vh;
+    }
+}
+
+.movie-image-card:hover {
+    img {
+        box-shadow: 0px 0px 6px 6px rgba(34, 60, 80, 0.52);
+    }
+}

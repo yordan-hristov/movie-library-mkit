@@ -1,0 +1,24 @@
+.search-bar {
+    
+    &-input {
+        height: 3em;
+        width: 25em;
+        margin-right: 1em;
+        padding: 0 .5em;
+        border-radius: 5px;
+        border: 2px solid gray;
+    }
+
+    &-input:focus {
+        border: none;
+    }
+
+    &-button {
+        height: 3em;
+        width: 6em;
+        border: 2px solid green;
+        border-radius: 5px;
+        color: green;
+        background-color: white;
+    }
+}

@@ -1,0 +1,13 @@
+.home {
+    &-heading {
+        text-align: center;
+        margin: 1em;
+    }
+
+    &-movies {
+        padding: 1em;
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        gap: 5em;
+    }
+}
