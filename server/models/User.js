@@ -21,9 +21,8 @@ const userSchema = new mongoose.Schema({
         rating: { type: String }
     }],
     notes: [{
-        _id: false,
-        movieId: { type: String },
-        note: { type: String }
+        movieId: {type: String},
+        note: {type: String}
     }]
 });
 

@@ -57,3 +57,28 @@ export const updateUserRatings = async (userId, rating) => {
 
     await user.save();
 }
+
+export const getUserNotes = async (userId) => {
+    const user = await User.findById(userId);
+
+    return user.notes;
+}
+
+export const createNote = async (userId, movieId, note) => {
+    const user = await User.findById(userId);
+
+    user.notes.push({movieId, note});
+
+    await user.save();
+}
+
+export const deleteNote = async (userId, noteId) => {
+    const user = await User.findById(userId);
+
+    const note = user.notes.find(n => n._id == noteId);
+    const index = user.notes.indexOf(note);
+
+    user.notes.splice(index,1);
+
+    await user.save();
+}

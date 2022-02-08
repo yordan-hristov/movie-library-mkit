@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router({mergeParams: true});
 
 import * as userService from '../services/userService.js';
+import userNoteController from './userNoteController.js'
 
 const registerUser = async (req,res) => {
     try {
@@ -62,5 +63,7 @@ router.get('/:id/favorites', getUserFavorites);
 router.put('/:id/favorites', updateUserFavorites);
 router.get('/:id/ratings', getUserRatings);
 router.put('/:id/ratings', updateUserRatings);
+
+router.use('/:id/notes', userNoteController)
 
 export default router;

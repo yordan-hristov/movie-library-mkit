@@ -1,0 +1,49 @@
+.movie-details-notes {
+    margin-top: 1em;
+
+    .add-notes {
+        &-input {
+            margin-right: .5em;
+            padding: .5em;
+            width: 30vw;
+        }
+
+        &-input:focus {
+            border: 0;
+        }
+
+        &-button {
+            padding: .5em;
+            width: 5vw;
+            background-color: white;
+            color: green;
+            border: 2px solid green;
+            border-radius: 1em;
+        }
+    }
+
+    .notes {
+        margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        &-note {
+            display: flex;
+            gap: 1em;
+            
+            span {
+                border: 1px solid blue;
+                border-radius: 50%;
+                font-size: large;
+                padding: 1em;
+            }
+
+            p {
+                padding: 1em;
+                font-size: large;
+
+            }
+        }
+    }
+}

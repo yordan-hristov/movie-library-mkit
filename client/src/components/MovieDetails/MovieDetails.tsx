@@ -7,6 +7,7 @@ import { getUserRatings } from '../../store/user/userSlice';
 import MovieInfo from '../MovieInfo/MovieInfo';
 
 import './MovieDetails.scss';
+import Notes from './Notes/Notes';
 import StarsRating from './StarsRating/StarsRating';
 
 type UserRating = {
@@ -39,6 +40,7 @@ const MovieDetails = () => {
                     movieId={id!}
                     userId={_id}
                 />
+                <Notes />
             </>
         }
     </div>;
