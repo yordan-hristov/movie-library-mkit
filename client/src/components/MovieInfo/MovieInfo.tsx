@@ -23,7 +23,7 @@ const MovieInfo = ({ movie }: MovieInfoProps) => {
 
     return <div className='movie-info'>
         <div className="movie-info-image">
-            <MovieImageCard imageUrl={movie.image} />
+            <MovieImageCard imageUrl={movie.image} movieId={movie.id}/>
         </div>
         <div className="movie-info-right">
             <h1 className="movie-info-title">{movie.title} <span>{`(${movie.year.split('-')[0]})`}</span></h1>

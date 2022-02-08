@@ -10,6 +10,14 @@ const getMoviesWithQuery = async (req,res) => {
     res.json(movies);
 }
 
+const getMovieById = async (req,res) => {
+    const id = req.params.id;
+    const movie = await movieService.getMovieById(id);
+
+    res.json(movie)
+}
+
 router.get('/', getMoviesWithQuery);
+router.get('/:id', getMovieById)
 
 export default router;

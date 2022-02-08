@@ -16,7 +16,11 @@ const Home = () => {
     <h1 className="home-heading">My Favorites</h1>
     <div className="home-movies">
       {favorites.map((m: IUserFavorites) => {
-        return <MovieImageCard key={m.movieId} imageUrl={m.imageUrl} />
+        return <MovieImageCard 
+        key={m.movieId} 
+        imageUrl={m.imageUrl} 
+        movieId={m.movieId}
+        />
       })}
     </div>
   </div>;
