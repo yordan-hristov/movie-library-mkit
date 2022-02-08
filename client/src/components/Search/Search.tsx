@@ -20,9 +20,9 @@ const Search = () => {
                 .then(res => setMovies(res));
         }
 
-        return () => {
-            dispatch(setSearchQuery(''));
-        }
+        // return () => {
+        //     dispatch(setSearchQuery(''));
+        // }
     }, [searchQuery])
 
     return <div className='search'>

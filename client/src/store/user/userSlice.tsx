@@ -9,13 +9,21 @@ export const getUserFavorites = createAsyncThunk(
   }
 )
 
+export const getUserRatings = createAsyncThunk(
+  'users/getUserRatings',
+  async (userId: string) => {
+    const ratings = await userService.getUserRatings(userId);
+    return ratings;
+  }
+)
+
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-      user: {}
+    user: {}
   },
   reducers: {
-    setUser: (state,action) => {
+    setUser: (state, action) => {
       state.user = action.payload
     },
     removeUser: (state) => {
@@ -23,9 +31,13 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getUserFavorites.fulfilled, (state,action) => {
-      state.user = {...state.user,favorites: action.payload}
-    })
+    builder
+      .addCase(getUserFavorites.fulfilled, (state, action) => {
+        state.user = { ...state.user, favorites: action.payload }
+      })
+      .addCase(getUserRatings.fulfilled, (state, action) => {
+        state.user = { ...state.user, ratings: action.payload }
+      })
   }
 });
 

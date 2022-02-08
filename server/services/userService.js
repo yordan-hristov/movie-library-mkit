@@ -37,3 +37,23 @@ export const updateUserFavorites = async (userId, movie) => {
 
     await user.save();
 }
+
+export const getUserRatings = async (userId) => {
+    const user = await User.findById(userId);
+
+    return user.ratings;
+}
+
+export const updateUserRatings = async (userId, rating) => {
+    const user = await User.findById(userId);
+    const ratings = user.ratings;
+
+    const element = ratings.find(r => r.movieId == rating.movieId);
+    const index = ratings.indexOf(element);
+
+    index == -1 ? 
+    ratings.push({movieId: rating.movieId, rating: rating.rating}) :
+    ratings.splice(index, 1);
+
+    await user.save();
+}

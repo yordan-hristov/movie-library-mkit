@@ -40,9 +40,27 @@ const updateUserFavorites = async (req,res) => {
     res.send('Updated');
 }
 
+const getUserRatings = async (req,res) => {
+    const userId = req.params.id;
+    const ratings = await userService.getUserRatings(userId);
+    
+    res.json(ratings);
+}
+
+const updateUserRatings = async (req,res) => {
+    const userId = req.params.id;
+    const rating = req.body.rating;
+
+    await userService.updateUserRatings(userId, rating);
+
+    res.send('Updated');
+}
+
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.get('/:id/favorites', getUserFavorites);
 router.put('/:id/favorites', updateUserFavorites);
+router.get('/:id/ratings', getUserRatings);
+router.put('/:id/ratings', updateUserRatings);
 
 export default router;

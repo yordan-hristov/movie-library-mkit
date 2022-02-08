@@ -5,6 +5,8 @@ const urls = {
     login: `${serverUrl}/login`,
     getFavorites: (id: string) => `${serverUrl}/${id}/favorites`,
     updateFavorites: (id: string) => `${serverUrl}/${id}/favorites`,
+    getRatings: (id: string) => `${serverUrl}/${id}/ratings`,
+    updateRatings: (id: string) => `${serverUrl}/${id}/ratings`,
 }
 
 const registerUser = async (email: string, password: string) => {
@@ -55,9 +57,29 @@ const updateUserFavorites = async (userId: string, movie: { id: string, imageUrl
     })
 }
 
+const getUserRatings = async (userId: string) => {
+    const res = await fetch(urls.getRatings(userId));
+    const data = await res.json();
+
+    return data;
+}
+
+const updateUserRatings = async (userId: string, rating: { movieId: string, rating: string }) => {
+    await fetch(urls.updateRatings(userId), {
+        method: "PUT",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId, rating })
+    })
+}
+
 export default {
     registerUser,
     loginUser,
     getUserFavorites,
-    updateUserFavorites
+    updateUserFavorites,
+    getUserRatings,
+    updateUserRatings
 }

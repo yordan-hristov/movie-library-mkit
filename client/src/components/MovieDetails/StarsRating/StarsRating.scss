@@ -1,0 +1,48 @@
+.star-rating {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+
+    &-stars {
+        cursor: pointer;
+        position: relative;
+
+        span {
+            visibility: hidden;
+            width: 10em;
+            background-color: gray;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 2em;
+            position: absolute;
+            bottom: 100%;
+            right: 15%;
+            z-index: 3;
+        }
+    }
+
+    &-stars:hover {
+        span {
+            visibility: visible;
+        }
+    }
+
+    &-star {
+        width: 3em;
+        height: 3em;
+    }
+
+    .filled {
+        fill: orange;
+    }
+
+}
+
+.star-rating:hover > .active {
+    fill: orange
+}
+
+.star-rating > .active:hover ~ .active{
+    fill: black
+}
