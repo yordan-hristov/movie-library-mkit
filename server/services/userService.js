@@ -17,3 +17,23 @@ export const getUser = async ({ email, password }) => {
         throw new Error();
     }
 }
+
+export const getUserFavorites = async (userId) => {
+    const user = await User.findById(userId);
+
+    return user.favorites;
+}
+
+export const updateUserFavorites = async (userId, movie) => {
+    const user = await User.findById(userId);
+    const favorites = user.favorites;
+
+    const element = favorites.find(m => m.movieId == movie.id);
+    const index = favorites.indexOf(element);
+
+    index == -1 ? 
+    favorites.push({movieId: movie.id, imageUrl: movie.imageUrl}) :
+    favorites.splice(index, 1);
+
+    await user.save();
+}

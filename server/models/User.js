@@ -10,12 +10,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    favorites: [String],
+    favorites: [{
+        _id: false,
+        movieId: {type: String},
+        imageUrl: {type: String}
+    }],
     ratings: [{
+        _id: false,
         movieId: { type: String },
         rating: { type: String }
     }],
     notes: [{
+        _id: false,
         movieId: { type: String },
         note: { type: String }
     }]
