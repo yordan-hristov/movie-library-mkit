@@ -26,7 +26,7 @@ const loginUser = async (req,res) => {
 
 const getUserFavorites = async (req,res) => {
     const userId = req.params.id;
-    const favorites = userService.getUserFavorites(userId);
+    const favorites = await userService.getUserFavorites(userId);
     
     res.json(favorites);
 }

@@ -6,13 +6,13 @@ export const getMoviesWithQuery = async (title) => {
     const movies = resMovies.map(({show}) => {
         return {
             id: show.id,
-            title: show.name,
-            year: show.premiered,
-            genres: show.genres,
-            runtime: show.runtime,
-            summary: show.summary,
-            url: show.url,
-            image: show.image.original
+            title: show.name || '',
+            year: show.premiered || '',
+            genres: show.genres || [],
+            runtime: show.runtime || '',
+            summary: show.summary || '',
+            url: show.url || '',
+            image: show.image?.original || ''
         }
     });
     return movies;
