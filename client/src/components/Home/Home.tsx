@@ -11,13 +11,13 @@ const Home = () => {
     <HeroSection />
     <h1 className="home-heading">My Favorites</h1>
     <div className="home-movies">
-      <MovieImageCard />
-      <MovieImageCard />
-      <MovieImageCard />
-      <MovieImageCard />
-      <MovieImageCard />
-      <MovieImageCard />
-      <MovieImageCard />
+      <MovieImageCard imageUrl={'someUrl'}/>
+      <MovieImageCard imageUrl={'someUrl'}/>
+      <MovieImageCard imageUrl={'someUrl'}/>
+      <MovieImageCard imageUrl={'someUrl'}/>
+      <MovieImageCard imageUrl={'someUrl'}/>
+      <MovieImageCard imageUrl={'someUrl'}/>
+      <MovieImageCard imageUrl={'someUrl'}/>
     </div>
   </div>;
 };

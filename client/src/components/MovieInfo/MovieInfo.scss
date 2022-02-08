@@ -1,0 +1,36 @@
+.movie-info {
+    display: flex;
+    width: 80vw;
+    
+    &-image {
+        margin-right: 5em;
+    }
+
+    &-right {
+        gap: 1em;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-summary {
+        max-width: 50vw;
+    }
+
+    &-title {
+        cursor: pointer;
+        width: fit-content;
+    }
+
+    &-button {
+        margin-top: auto;
+        margin-bottom: 1em;
+        width: fit-content;
+        padding: .8em 2em;
+        color: red;
+        background-color: white;
+        border-color: inherit;
+        border-radius: 1em;
+        font-size: large;
+        cursor: pointer;
+    }
+}

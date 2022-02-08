@@ -5,6 +5,7 @@ export const getMoviesWithQuery = async (title) => {
     const resMovies = await res.json();
     const movies = resMovies.map(({show}) => {
         return {
+            id: show.id,
             title: show.name,
             year: show.premiered,
             genres: show.genres,
