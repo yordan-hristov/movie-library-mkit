@@ -15,9 +15,14 @@ type UserRating = {
     rating: string
 }
 
+type UserNote = {
+    movieId: string;
+    note: string;
+}
+
 const MovieDetails = () => {
     const dispatch = useDispatch();
-    const { _id, ratings } = useSelector((state: RootStateOrAny) => state.user.user);
+    const { _id, ratings, notes } = useSelector((state: RootStateOrAny) => state.user.user);
     const { id } = useParams();
     const [movie, setMovie] = useState<IMovie>();
 
@@ -40,7 +45,11 @@ const MovieDetails = () => {
                     movieId={id!}
                     userId={_id}
                 />
-                <Notes />
+                <Notes
+                    notes={notes.filter((n: UserNote) => n.movieId == id)}
+                    movieId={id!}
+                    userId={_id}
+                />
             </>
         }
     </div>;

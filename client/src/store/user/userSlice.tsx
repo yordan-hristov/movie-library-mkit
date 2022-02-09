@@ -17,6 +17,14 @@ export const getUserRatings = createAsyncThunk(
   }
 )
 
+export const getUserNotes = createAsyncThunk(
+  'users/getUserNotes',
+  async (userId: string) => {
+    const notes = await userService.getUserNotes(userId);
+    return notes;
+  }
+)
+
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -37,6 +45,9 @@ export const userSlice = createSlice({
       })
       .addCase(getUserRatings.fulfilled, (state, action) => {
         state.user = { ...state.user, ratings: action.payload }
+      })
+      .addCase(getUserNotes.fulfilled, (state, action) => {
+        state.user = { ...state.user, notes: action.payload }
       })
   }
 });

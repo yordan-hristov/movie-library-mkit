@@ -1,0 +1,26 @@
+.note {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    font-style: italic;
+    
+    span {
+        // border: 1px solid blue; 
+        // border-radius: 50%;
+        font-size: large;
+        padding: .5em;
+    }
+
+    p {
+        font-size: large;
+    }
+
+    p::first-letter {
+        text-transform: uppercase;
+    }
+
+    div {
+        cursor: pointer;
+        font-size: small;
+    }
+}
