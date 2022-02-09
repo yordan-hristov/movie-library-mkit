@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import userService from '../../../services/userService';
+import { getUserRatings } from '../../../store/user/userSlice';
 import { ReactComponent as StarSvg } from './assets/star.svg'
 
 import './StarsRating.scss';
@@ -11,11 +13,13 @@ type StarsRatingProps = {
 }
 
 const StarsRating = ({ rating, movieId, userId }: StarsRatingProps) => {
+    const dispatch = useDispatch();
     const [hoveredStars, setHoveredStars] = useState(Number(rating));
 
     const handleClick = async (value: number) => {
         setHoveredStars(value);
         await userService.updateUserRatings(userId,{movieId,rating: value.toString()});
+        dispatch(getUserRatings(userId));
     }
 
     return <div className='star-rating'>

@@ -32,10 +32,6 @@ const MovieDetails = () => {
         movieService.getMovieById(id!)
             .then(res => setMovie(res))
             .finally(() => setLoading(false));
-
-        return () => {
-            dispatch(getUserRatings(_id));
-        }
     }, [])
 
     return <div className='movie-details'>
