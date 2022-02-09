@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setSearchQuery } from '../../../store/searchQuery/searchQuerySlice';
 import { removeUser } from '../../../store/user/userSlice';
 
 import './HeroSection.scss';
@@ -10,6 +11,7 @@ const HeroSection = () => {
 
     const handleClick = () => {
         dispatch(removeUser());
+        dispatch(setSearchQuery(''));
     }
 
     return <section className='hero-section'>
