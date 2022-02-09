@@ -15,13 +15,15 @@ const Home = () => {
     <HeroSection />
     <h1 className="home-heading">My Favorites</h1>
     <div className="home-movies">
-      {favorites.map((m: IUserFavorites) => {
-        return <MovieImageCard 
-        key={m.movieId} 
-        imageUrl={m.imageUrl} 
-        movieId={m.movieId}
-        />
-      })}
+      {favorites.length > 0 ?
+        favorites.map((m: IUserFavorites) => {
+          return <MovieImageCard
+            key={m.movieId}
+            imageUrl={m.imageUrl}
+            movieId={m.movieId}
+          />
+        }) :
+        <p>No favorites yet...</p>}
     </div>
   </div>;
 };

@@ -35,7 +35,7 @@ const Notes = ({ notes, movieId, userId }: NotesProps) => {
             <button className="add-notes-button" onClick={handleAddClick}>Add</button>
         </div>
         <div className="notes">
-            {notes.length > 0 &&
+            {notes.length > 0 ?
                 notes.map((n, i) => {
                     return <Note
                         index={i}
@@ -44,7 +44,8 @@ const Notes = ({ notes, movieId, userId }: NotesProps) => {
                         noteId={n._id}
                         handleDelete={handleDeleteClick}
                     />
-                })}
+                }) :
+                <p>No notes yet...</p>}
         </div>
     </div>;
 };

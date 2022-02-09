@@ -29,9 +29,11 @@ const Search = () => {
         <h1 className='search-heading'>Search</h1>
         <SearchBar shouldNavigate={false} />
         <div className="search-results">
-            {movies.length > 0 && movies.map((m: IMovie) => {
+            {movies.length > 0 ? 
+            movies.map((m: IMovie) => {
                 return <MovieInfo movie={m} key={m.id} />
-            })}
+            }) :
+            <p>No results...</p>}
         </div>
     </div>;
 };
