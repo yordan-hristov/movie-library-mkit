@@ -31,6 +31,8 @@ function App() {
             <Route path="/movies/:id" element={<MovieDetails />} />
           </Route>
 
+          <Route path='*' element={<Navigate to={'/home'}/>}/>
+
         </Routes>
       </BrowserRouter>
 
