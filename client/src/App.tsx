@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home/Home';
 import MovieDetails from './components/MovieDetails/MovieDetails';
@@ -25,6 +25,7 @@ function App() {
           </Route>
 
           <Route element={<UserRoute />}>
+            <Route path="/" element={<Navigate to={'/home'}/>}/>
             <Route path="/home" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/movies/:id" element={<MovieDetails />} />
