@@ -25,4 +25,16 @@
         font-size: large;
         cursor: pointer;
     }
+
+    .logout {
+        color: rgb(218, 26, 26);
+        font-style: italic;
+        position: absolute;
+        margin-top: 2em;
+        border: 2px solid;
+        border-color: inherit;
+        padding: 0 .5em;
+        cursor: pointer;
+        border-radius: 5px;
+    }
 }
