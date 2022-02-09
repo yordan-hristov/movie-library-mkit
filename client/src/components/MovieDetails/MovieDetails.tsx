@@ -5,6 +5,7 @@ import { IMovie } from '../../interfaces/movie';
 import movieService from '../../services/movieService';
 import { getUserRatings } from '../../store/user/userSlice';
 import MovieInfo from '../MovieInfo/MovieInfo';
+import LoadingSpinner from '../shared/LoadingSpinner/LoadingSpinner';
 
 import './MovieDetails.scss';
 import Notes from './Notes/Notes';
@@ -25,10 +26,12 @@ const MovieDetails = () => {
     const { _id, ratings, notes } = useSelector((state: RootStateOrAny) => state.user.user);
     const { id } = useParams();
     const [movie, setMovie] = useState<IMovie>();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         movieService.getMovieById(id!)
-            .then(res => setMovie(res));
+            .then(res => setMovie(res))
+            .finally(() => setLoading(false));
 
         return () => {
             dispatch(getUserRatings(_id));
@@ -36,7 +39,7 @@ const MovieDetails = () => {
     }, [])
 
     return <div className='movie-details'>
-        {movie &&
+        {!loading ?
             <>
                 <MovieInfo movie={movie!} />
                 <h1 className='movie-details-heading'>Your Review</h1>
@@ -50,7 +53,8 @@ const MovieDetails = () => {
                     movieId={id!}
                     userId={_id}
                 />
-            </>
+            </> :
+            <LoadingSpinner />
         }
     </div>;
 };
