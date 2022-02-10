@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import persistStore from 'redux-persist/es/persistStore';
+import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import './App.css';
 import Home from './components/Home/Home';

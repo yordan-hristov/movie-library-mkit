@@ -7,7 +7,7 @@ import Note from './Note/Note';
 import './Notes.scss';
 
 type NotesProps = {
-    notes: [{ movieId: string, note: string, _id: string }];
+    notes: { movieId: string, note: string, _id: string }[];
     movieId: string;
     userId: string;
 }

@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from 'redux-persist/lib/storage';
 import userReducer from './user/userSlice';
 import searchQueryReducer from './searchQuery/searchQuerySlice';
-import persistReducer from "redux-persist/es/persistReducer";
+import { persistReducer } from "redux-persist";
 import thunk from 'redux-thunk';
 
 const reducers = combineReducers({
@@ -15,7 +15,7 @@ const persistConfig = {
     storage
 }
 
-const persistedReducer = persistReducer(persistConfig,reducers);
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 export default configureStore({
     reducer: persistedReducer,
