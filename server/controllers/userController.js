@@ -24,6 +24,33 @@ const userSchema = Joi.object({
         }),
 });
 
+/**
+ * @swagger
+ * /user/register:
+ *  post:
+ *   summary: Create user
+ *   description: Creates user and returns it if inputs are valid
+ *   tags:
+ *     - user
+ *   requestBody:
+ *       description: Valid email and password
+ *       content:
+ *         application/json:
+ *           schema:
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *   responses:
+ *     200:
+ *       description: User
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+*/
+
 const registerUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -37,6 +64,33 @@ const registerUser = async (req, res) => {
     }
 };
 
+/**
+ * @swagger
+ * /user/login:
+ *  post:
+ *   summary: Login user
+ *   description: Returns user if email and password are valid
+ *   tags:
+ *     - user
+ *   requestBody:
+ *       description: Valid email and password
+ *       content:
+ *         application/json:
+ *           schema:
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *   responses:
+ *     200:
+ *       description: User
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+*/
+
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -48,12 +102,82 @@ const loginUser = async (req, res) => {
     }
 }
 
+/**
+ * @swagger
+ * /user/:id/favorites:
+ *  get:
+ *   summary: Get user's favorite movies
+ *   description: Returns an array with user's favorite movies
+ *   parameters:
+ *     - in: path
+ *       name: id
+ *       required: true
+ *       description: user's id.
+ *       schema:
+ *         type: string
+ *   tags:
+ *     - user
+ *   responses:
+ *     200:
+ *       description: User
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *              type: object
+ *              properties:
+ *                movieId:
+ *                  type: string
+ *                imageUrl:
+ *                  type: string
+*/
+
 const getUserFavorites = async (req, res) => {
     const userId = req.params.id;
     const favorites = await userService.getUserFavorites(userId);
 
     res.json(favorites);
 }
+
+/**
+ * @swagger
+ * /user/:id/favorites:
+ *  put:
+ *   summary: Update user's favorite movies
+ *   description: Adds or removes movie from user's favorites
+ *   parameters:
+ *     - in: path
+ *       name: id
+ *       required: true
+ *       description: user's id.
+ *       schema:
+ *         type: string
+ *   requestBody:
+ *       description: userId, movieId and imageUrl
+ *       content:
+ *         application/json:
+ *           schema:
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               movie:
+ *                 type: object
+ *                 properties:
+ *                   movieId:
+ *                     type: string
+ *                   imageUrl:
+ *                     type: string
+ *   tags:
+ *     - user
+ *   responses:
+ *     200:
+ *       description: "Updated"
+ *       content:
+ *         text:
+ *           schema:
+ *             type: string
+*/
 
 const updateUserFavorites = async (req, res) => {
     const userId = req.params.id;
@@ -64,12 +188,82 @@ const updateUserFavorites = async (req, res) => {
     res.send('Updated');
 }
 
+/**
+ * @swagger
+ * /user/:id/ratings:
+ *  get:
+ *   summary: Get user's ratings
+ *   description: Returns an array with user's ratings
+ *   parameters:
+ *     - in: path
+ *       name: id
+ *       required: true
+ *       description: user's id.
+ *       schema:
+ *         type: string
+ *   tags:
+ *     - user
+ *   responses:
+ *     200:
+ *       description: User
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *              type: object
+ *              properties:
+ *                movieId:
+ *                  type: string
+ *                rating:
+ *                  type: string
+*/
+
 const getUserRatings = async (req, res) => {
     const userId = req.params.id;
     const ratings = await userService.getUserRatings(userId);
 
     res.json(ratings);
 }
+
+/**
+ * @swagger
+ * /user/:id/ratings:
+ *  put:
+ *   summary: Update user's ratings
+ *   description: Adds or removes rating from user's ratings
+ *   parameters:
+ *     - in: path
+ *       name: id
+ *       required: true
+ *       description: user's id.
+ *       schema:
+ *         type: string
+ *   requestBody:
+ *       description: userId, movieId and rating
+ *       content:
+ *         application/json:
+ *           schema:
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               rating:
+ *                 type: object
+ *                 properties:
+ *                   movieId:
+ *                     type: string
+ *                   rating:
+ *                     type: string    
+ *   tags:
+ *     - user
+ *   responses:
+ *     200:
+ *       description: "Updated"
+ *       content:
+ *         text:
+ *           schema:
+ *             type: string
+*/
 
 const updateUserRatings = async (req, res) => {
     const userId = req.params.id;
@@ -90,3 +284,4 @@ router.put('/:id/ratings', updateUserRatings);
 router.use('/:id/notes', userNoteController)
 
 export default router;
+
