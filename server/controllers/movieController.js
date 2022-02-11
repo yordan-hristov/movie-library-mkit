@@ -30,10 +30,14 @@ import * as movieService from '../services/movieService.js';
 */
 
 const getMoviesWithQuery = async (req,res) => {
-    const title = req.query.title;
-    const movies = await movieService.getMoviesWithQuery(title);
-
-    res.json(movies);
+    try{
+        const title = req.query.title;
+        const movies = await movieService.getMoviesWithQuery(title);
+        
+        res.json({success: true, data: movies});
+    }catch(err){
+        res.status(500).json({success: false, message: 'Something went wrong'});
+    }
 }
 
 /**
@@ -61,10 +65,14 @@ const getMoviesWithQuery = async (req,res) => {
 */
 
 const getMovieById = async (req,res) => {
-    const id = req.params.id;
-    const movie = await movieService.getMovieById(id);
-
-    res.json(movie)
+    try{
+        const id = req.params.id;
+        const movie = await movieService.getMovieById(id);
+        
+        res.json({success: true,data: movie});
+    }catch(err){
+        res.status(500).json({success: false, message: 'Something went wrong'});
+    }
 }
 
 router.get('/', getMoviesWithQuery);

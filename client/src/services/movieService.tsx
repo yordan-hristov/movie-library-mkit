@@ -7,16 +7,16 @@ const urls = {
 
 const getMoviesWithQuery = async (title: string) => {
     const res = await fetch(urls.getWithQuery(title));
-    const movies = await res.json();
+    const {success, data} = await res.json();
     
-    return movies;
+    if(success) return data;
 };
 
 const getMovieById = async (id: string) => {
     const res = await fetch(urls.getById(id));
-    const movie = await res.json();
+    const {success, data} = await res.json();
 
-    return movie;
+    if(success) return data;
 }
 
 export default {

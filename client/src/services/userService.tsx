@@ -44,62 +44,77 @@ const loginUser = async (email: string, password: string) => {
 
 const getUserFavorites = async (userId: string) => {
     const res = await fetch(urls.getFavorites(userId));
-    const data = await res.json();
+    const {success, data} = await res.json();
 
-    return data;
+    if(success) return data;
 }
 
 const updateUserFavorites = async (userId: string, movie: { id: string, imageUrl: string }) => {
-    await fetch(urls.updateFavorites(userId), {
+    const res = await fetch(urls.updateFavorites(userId), {
         method: "PUT",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ userId, movie })
-    })
+        body: JSON.stringify({movie})
+    });
+
+    const {success, message} = await res.json();
+
+    if(success) return message;
 }
 
 const getUserRatings = async (userId: string) => {
     const res = await fetch(urls.getRatings(userId));
-    const data = await res.json();
+    const {success, data} = await res.json();
 
-    return data;
+    if(success) return data;
 }
 
 const updateUserRatings = async (userId: string, rating: { movieId: string, rating: string }) => {
-    await fetch(urls.updateRatings(userId), {
+    const res = await fetch(urls.updateRatings(userId), {
         method: "PUT",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ userId, rating })
-    })
+        body: JSON.stringify({rating})
+    });
+
+    const {success, message} = await res.json();
+
+    if(success) return message;
 }
 
 const getUserNotes = async (userId: string) => {
     const res = await fetch(urls.getNotes(userId));
-    const data = await res.json();
+    const {success, data} = await res.json();
 
-    return data;
+    if(success) return data;
 }
 
 const createNote = async (userId: string, movieId: string, note: string) => {
-    await fetch(urls.createNote(userId), {
+    const res = await fetch(urls.createNote(userId), {
         method: "POST",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ movieId, note })
-    })
+    });
+
+    const {success, message} = await res.json();
+    if(success) return message;
 }
 
 const deleteNote = async (userId: string, noteId: string) => {
-    await fetch(urls.deleteNote(userId, noteId), {
+    const res = await fetch(urls.deleteNote(userId, noteId), {
         method: "DELETE"
-    })
+    });
+
+    const {success, message} = await res.json();
+
+    if(success) return message;
 }
 
 export default {

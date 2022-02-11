@@ -37,10 +37,14 @@ import * as userService from '../services/userService.js';
 */
 
 const getUserNotes = async (req,res) => {
-    const id = req.params.id;
-    const notes = await userService.getUserNotes(id);
-
-    res.json(notes)
+    try{
+        const id = req.params.id;
+        const notes = await userService.getUserNotes(id);
+        
+        res.json({success: true, data: notes});
+    }catch(err) {
+        res.status(500).json({success: false, message: 'Something went wrong'});
+    }
 }
 
 /**
@@ -81,11 +85,15 @@ const getUserNotes = async (req,res) => {
 */
 
 const createNote = async (req,res) => {
-    const id = req.params.id;
-    const {movieId, note} = req.body;
-    await userService.createNote(id,movieId,note);
-
-    res.send('Created');
+    try{
+        const id = req.params.id;
+        const {movieId, note} = req.body;
+        await userService.createNote(id,movieId,note);
+        
+        res.status(201).json({succes: true, message: 'Created'});
+    }catch(err) {
+        res.status(500).json({success: false, message: 'Something went wrong'});
+    }
 }
 
 /**
@@ -119,11 +127,15 @@ const createNote = async (req,res) => {
 */
 
 const deleteNote = async (req,res) => {
-    const userId = req.params.id;
-    const noteId = req.params.noteId;
-    await userService.deleteNote(userId, noteId);
-
-    res.send('Deleted');
+    try{
+        const userId = req.params.id;
+        const noteId = req.params.noteId;
+        await userService.deleteNote(userId, noteId);
+        
+        res.json({succes: true, message: 'Deleted'});
+    }catch(err){
+        res.status(500).json({success: false, message: 'Something went wrong'});
+    }
 }
 
 router.get('/', getUserNotes);

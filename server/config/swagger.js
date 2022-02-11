@@ -14,6 +14,8 @@ const options = {
         './index.js',
         './routes.js',
         './controllers/userController.js',
+        './controllers/userFavoriteController.js',
+        './controllers/userRatingController.js',
         './controllers/userNoteController.js',
         './controllers/movieController.js',
     ]
