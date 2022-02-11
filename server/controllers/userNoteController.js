@@ -20,20 +20,38 @@ import * as userService from '../services/userService.js';
  *     - user
  *   responses:
  *     200:
- *       description: User
+ *       description: User's notes
  *       content:
  *         application/json:
  *           schema:
- *             type: array
- *             items:
- *              type: object
- *              properties:
- *                movieId:
- *                  type: string
- *                note:
- *                  type: string
- *                _id:
- *                  type: string
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *               data:
+ *                  type: array
+ *                  items:
+ *                   type: object
+ *                   properties:
+ *                     movieId:
+ *                       type: string
+ *                     note:
+ *                       type: string
+ *                     _id:
+ *                       type: string
+ *     500:
+ *       description: Error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *                 default: false
+ *               message:
+ *                 type: string
+ *                 default: Something went wrong
 */
 
 const getUserNotes = async (req,res) => {
@@ -76,12 +94,31 @@ const getUserNotes = async (req,res) => {
  *   tags:
  *     - user
  *   responses:
- *     200:
+ *     201:
  *       description: "Created"
  *       content:
- *         text:
+ *         application/json:
  *           schema:
- *             type: string
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *               message:
+ *                 type: string
+ *                 default: Created
+ *     500:
+ *       description: Error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *                 default: false
+ *               message:
+ *                 type: string
+ *                 default: Something went wrong
 */
 
 const createNote = async (req,res) => {
@@ -121,9 +158,28 @@ const createNote = async (req,res) => {
  *     200:
  *       description: "Deleted"
  *       content:
- *         text:
+ *         application/json:
  *           schema:
- *             type: string
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *               message:
+ *                 type: string
+ *                 default: Deleted
+ *     500:
+ *       description: Error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *                 default: false
+ *               message:
+ *                 type: string
+ *                 default: Something went wrong
 */
 
 const deleteNote = async (req,res) => {

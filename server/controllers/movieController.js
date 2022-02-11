@@ -24,9 +24,27 @@ import * as movieService from '../services/movieService.js';
  *       content:
  *         application/json:
  *           schema:
- *             type: array
- *             items:
- *               $ref: '#/components/schemas/Movie'
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *               data:
+ *                 type: array
+ *                 items:
+ *                   $ref: '#/components/schemas/Movie'
+ *     500:
+ *       description: Error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *                 default: false
+ *               message:
+ *                 type: string
+ *                 default: Something went wrong
 */
 
 const getMoviesWithQuery = async (req,res) => {
@@ -61,7 +79,25 @@ const getMoviesWithQuery = async (req,res) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Movie'
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *               data:
+ *                 $ref: '#/components/schemas/Movie'
+ *     500:
+ *       description: Error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *                 default: false
+ *               message:
+ *                 type: string
+ *                 default: Something went wrong
 */
 
 const getMovieById = async (req,res) => {

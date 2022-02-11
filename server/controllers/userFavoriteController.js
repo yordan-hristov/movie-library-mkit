@@ -20,18 +20,36 @@ import * as userService from '../services/userService.js';
  *     - user
  *   responses:
  *     200:
- *       description: User
+ *       description: User's favorites
  *       content:
  *         application/json:
  *           schema:
- *             type: array
- *             items:
- *              type: object
- *              properties:
- *                movieId:
- *                  type: string
- *                imageUrl:
- *                  type: string
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *               data:
+ *                  type: array
+ *                  items:
+ *                   type: object
+ *                   properties:
+ *                     movieId:
+ *                       type: string
+ *                     imageUrl:
+ *                       type: string
+ *     500:
+ *       description: Error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *                 default: false
+ *               message:
+ *                 type: string
+ *                 default: Something went wrong
 */
 
 const getUserFavorites = async (req, res) => {
@@ -67,7 +85,7 @@ const getUserFavorites = async (req, res) => {
  *               movie:
  *                 type: object
  *                 properties:
- *                   movieId:
+ *                   id:
  *                     type: string
  *                   imageUrl:
  *                     type: string
@@ -77,9 +95,28 @@ const getUserFavorites = async (req, res) => {
  *     200:
  *       description: "Updated"
  *       content:
- *         text:
+ *         application/json:
  *           schema:
- *             type: string
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *               message:
+ *                 type: string
+ *                 default: Updated
+ *     500:
+ *       description: Error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               success:
+ *                 type: boolean
+ *                 default: false
+ *               message:
+ *                 type: string
+ *                 default: Something went wrong
 */
 
 const updateUserFavorites = async (req, res) => {
